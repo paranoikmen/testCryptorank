@@ -15,10 +15,6 @@ export const getCurrencies = async ({
   sort?: SortOrder;
   symbols?: string;
 }) => {
-  console.log(limit,
-    offset,
-    sort ,
-    symbols,);
   const res = await axios.get(`${URL}/currencies`, {
     params: {
       api_key: API_KEY,
