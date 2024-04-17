@@ -13,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const CurrencyListScreen = ({route}) => {
   const {onChangeCurrency} = route.params;
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const [offset, setOffset] = useState<number>(0);
   const [sort, setSort] = useState<SortOrder>(SortOrder.Rank);
@@ -31,7 +31,6 @@ const CurrencyListScreen = ({route}) => {
         symbols: searchTerm,
         sort,
       });
-      console.log(searchTerm);
       setCurrencies(fetchedCurrencies.data);
     } catch (error) {
       console.error(error);
