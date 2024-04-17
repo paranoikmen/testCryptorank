@@ -29,8 +29,16 @@ const Input = ({
     <View style={styles.mainContainer}>
       <TextInput
         keyboardType="numeric"
-        value={value.toPrecision(2)}
+        value={value}
         defaultValue={value.toString()}
+        onBlur={() => {
+          const numericValue = Number(value);
+          onChangeText(
+            numericValue > 1
+              ? numericValue.toFixed(2)
+              : numericValue.toPrecision(2),
+          );
+        }}
         onChangeText={e => onChangeText(e)}
         editable={editable}
         style={styles.text}

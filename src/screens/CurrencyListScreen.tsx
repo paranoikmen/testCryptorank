@@ -101,6 +101,7 @@ const CurrencyListScreen = ({route}) => {
               style={styles.item}
               onPress={() => {
                 onChangeCurrency(item);
+                navigation.goBack();
               }}>
               <Text style={styles.text}>{item.symbol}</Text>
             </TouchableOpacity>

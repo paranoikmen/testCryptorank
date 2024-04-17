@@ -26,7 +26,14 @@ const Converter = ({data}: ConverterProps) => {
   };
 
   const handleChangeFirstInput = value => {
-    setValue(value);
+    setValue(value.replace(/([^(\d|\.)])*/g, ''));
+  };
+
+  const test = inputValue => {
+    const numericValue = Number(inputValue);
+    return numericValue > 1
+      ? numericValue.toFixed(2)
+      : numericValue.toPrecision(2);
   };
 
   return (
@@ -50,7 +57,7 @@ const Converter = ({data}: ConverterProps) => {
         onChangeCurrency={setSecondCurrency}
         value={
           firstCurrency
-            ? convertCurrency(value, firstCurrency, secondCurrency)
+            ? test(convertCurrency(value, firstCurrency, secondCurrency))
             : 0
         }
         currency={secondCurrency}

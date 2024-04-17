@@ -2,7 +2,7 @@ import axios from 'axios';
 import {SortOrder} from '../types/types';
 
 const URL = 'https://api.cryptorank.io/v1';
-const API_KEY = '97ae305d9e11092374ac6a6ce30f97747f28b25b8cbbdb810d7bd0326e89';
+const API_KEY = '63800a48d1bf8eaf3b45e943dad20f2a9ee9a31fe491ecfca5c4264b9637';
 
 export const getCurrencies = async ({
   limit = 10,
