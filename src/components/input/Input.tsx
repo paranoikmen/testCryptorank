@@ -33,6 +33,8 @@ const Input = ({
         defaultValue={value.toString()}
         onChangeText={e => onChangeText(e)}
         editable={editable}
+        style={styles.text}
+        placeholderTextColor={'black'}
       />
       <TouchableOpacity
         onPress={() =>
@@ -40,8 +42,8 @@ const Input = ({
             onChangeCurrency,
           })
         }>
-        <Text>symbol:</Text>
-        <Text>{currency?.symbol?.toUpperCase()}</Text>
+        <Text style={styles.text}>symbol:</Text>
+        <Text style={styles.text}>{currency?.symbol?.toUpperCase()}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -52,6 +54,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  text: {
+    color: 'black',
   },
 });
 

@@ -43,7 +43,7 @@ const Converter = ({data}: ConverterProps) => {
         <TouchableOpacity
           style={styles.switchButton}
           onPress={() => handleSwitchCurrency()}>
-          <Text>↑↓</Text>
+          <Text style={styles.text}>↑↓</Text>
         </TouchableOpacity>
       </View>
       <Input
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color: 'black',
   },
 });
 

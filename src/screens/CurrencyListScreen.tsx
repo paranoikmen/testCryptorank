@@ -9,9 +9,11 @@ import {
 } from 'react-native';
 import {Currency, SortOrder} from '../types/types';
 import {getCurrencies} from '../api/api';
+import {useNavigation} from '@react-navigation/native';
 
 const CurrencyListScreen = ({route}) => {
   const {onChangeCurrency} = route.params;
+  const navigation = useNavigation()
 
   const [offset, setOffset] = useState<number>(0);
   const [sort, setSort] = useState<SortOrder>(SortOrder.Rank);
@@ -26,9 +28,10 @@ const CurrencyListScreen = ({route}) => {
       const fetchedCurrencies = await getCurrencies({
         limit: 10,
         offset,
-        symbol: searchTerm,
+        symbols: searchTerm,
         sort,
       });
+      console.log(searchTerm);
       setCurrencies(fetchedCurrencies.data);
     } catch (error) {
       console.error(error);
@@ -79,16 +82,16 @@ const CurrencyListScreen = ({route}) => {
 
   return (
     <View>
-      <Text>Select Currency</Text>
+      <Text style={styles.text}>Select Currency</Text>
       <TextInput
+        style={styles.text}
+        placeholderTextColor={'grey'}
         placeholder="Search for a currency..."
         onChangeText={text => setSearchTerm(text)}
       />
-      <View style={styles.margins}>
-        <TouchableOpacity onPress={() => handleSort()}>
-          <Text>{sort}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.margins} onPress={() => handleSort()}>
+        <Text style={styles.text}>{sort}</Text>
+      </TouchableOpacity>
       <FlatList
         style={styles.margins}
         data={currencies}
@@ -99,7 +102,7 @@ const CurrencyListScreen = ({route}) => {
               onPress={() => {
                 onChangeCurrency(item);
               }}>
-              <Text>{item.symbol}</Text>
+              <Text style={styles.text}>{item.symbol}</Text>
             </TouchableOpacity>
           );
         }}
@@ -107,11 +110,11 @@ const CurrencyListScreen = ({route}) => {
       <View style={styles.buttonsContainer}>
         {!offset || (
           <TouchableOpacity style={styles.button} onPress={() => prevPage()}>
-            <Text>{'<'}</Text>
+            <Text style={styles.text}>{'<'}</Text>
           </TouchableOpacity>
         )}
         <TouchableOpacity style={styles.button} onPress={() => nextPage()}>
-          <Text>{'>'}</Text>
+          <Text style={styles.text}>{'>'}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -119,6 +122,9 @@ const CurrencyListScreen = ({route}) => {
 };
 
 const styles = StyleSheet.create({
+  text: {
+    color: 'black',
+  },
   margins: {
     marginTop: 15,
   },
